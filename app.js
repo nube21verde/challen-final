@@ -1,35 +1,37 @@
-let amigos = []; // Array para guardar los nombres
+// Lista inicial de amigos
+let amigos = ["Marco", "Leydi", "Larry", "Flor", "Roman", "Nicole"];
+
+// Mostrar lista al cargar
+document.addEventListener("DOMContentLoaded", mostrarLista);
 
 // Función para agregar un amigo
 function agregarAmigo() {
     let nombre = document.getElementById("amigo").value.trim();
 
-    // Validar entrada
     if (nombre === "") {
         alert("Por favor, inserte un nombre.");
         return;
     }
 
-    // Evitar duplicados (ignorando mayúsculas)
     if (amigos.some(amigo => amigo.toLowerCase() === nombre.toLowerCase())) {
         alert("Este nombre ya está en la lista.");
         return;
     }
 
-    amigos.push(nombre); // Agregar al array
-    document.getElementById("amigo").value = ""; // Limpiar campo
-    mostrarLista(); // Actualizar lista
+    amigos.push(nombre);
+    document.getElementById("amigo").value = "";
+    mostrarLista();
 }
 
 // Función para mostrar la lista en pantalla
 function mostrarLista() {
     let lista = document.getElementById("listaDeAmigos");
-    lista.innerHTML = ""; // Limpiar lista
+    lista.innerHTML = "";
 
     for (let i = 0; i < amigos.length; i++) {
         let li = document.createElement("li");
 
-        // Texto del nombre
+        // Texto del amigo
         let nombreTexto = document.createElement("span");
         nombreTexto.textContent = amigos[i];
         nombreTexto.style.marginRight = "10px";
@@ -43,7 +45,6 @@ function mostrarLista() {
         botonEliminar.style.color = "red";
         botonEliminar.style.fontSize = "16px";
 
-        // Evento para borrar amigo
         botonEliminar.onclick = function () {
             eliminarAmigo(i);
         };
@@ -56,7 +57,7 @@ function mostrarLista() {
 
 // Función para eliminar un amigo
 function eliminarAmigo(indice) {
-    amigos.splice(indice, 1); // Elimina 1 elemento en la posición indicada
+    amigos.splice(indice, 1);
     mostrarLista();
 }
 
@@ -71,5 +72,7 @@ function sortearAmigo() {
     let amigoSorteado = amigos[indiceAleatorio];
 
     document.getElementById("resultado").innerHTML =
-        `El amigo secreto es: <strong>${amigoSorteado}</strong>`;
+        `🎉 El amigo secreto es: <strong>${amigoSorteado}</strong>`;
 }
+
+
